@@ -41,7 +41,7 @@ func main() {
 
 			fmt.Println("函数计算结果: ", result)
 			ai.MessageStore.AddFor(ai.RoleAssistant, response.Content, toolCalls)
-			ai.MessageStore.AddForTool(string(result), toolCalls[0].Function.Name, toolCalls[0].ID)
+			ai.MessageStore.AddForTool(fmt.Sprint(result), toolCalls[0].Function.Name, toolCalls[0].ID)
 
 			response = ai.ToolsChat(ai.MessageStore.ToMessage(), toolsList)
 			toolCalls = response.ToolCalls
